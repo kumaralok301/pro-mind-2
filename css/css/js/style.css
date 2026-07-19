@@ -1,0 +1,294 @@
+/* =========================
+   PRO-MIND Website CSS
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background: #f8fafc;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: #0f172a;
+    color: white;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+.logo span {
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #38bdf8;
+}
+
+
+/* Hero Section */
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 8%;
+    background: linear-gradient(
+        120deg,
+        #0f172a,
+        #1e3a8a
+    );
+    color: white;
+}
+
+.hero-content {
+    width: 55%;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #38bdf8;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.hero-image img {
+    width: 350px;
+    border-radius: 50%;
+}
+
+
+/* Buttons */
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #38bdf8;
+    color: #0f172a;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: white;
+}
+
+
+/* Common Sections */
+
+section {
+    padding: 70px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    color: #0f172a;
+}
+
+.section-title p {
+    color: #64748b;
+}
+
+
+/* Cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card h3 {
+    color:#1e3a8a;
+    margin-bottom:15px;
+}
+
+
+/* About */
+
+.about-content {
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+.about-content img {
+    width:350px;
+    border-radius:15px;
+}
+
+
+/* Services */
+
+.service-box {
+    background:white;
+    padding:25px;
+    border-left:5px solid #38bdf8;
+    margin-bottom:20px;
+}
+
+
+/* Founder */
+
+.founder {
+    display:flex;
+    align-items:center;
+    gap:40px;
+}
+
+.founder img {
+    width:280px;
+    border-radius:50%;
+}
+
+
+/* Industries */
+
+.industry-list {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.industry-item {
+    background:#fff;
+    padding:25px;
+    text-align:center;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+
+/* Contact */
+
+.contact-form {
+    max-width:700px;
+    margin:auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.contact-form button {
+    border:none;
+    cursor:pointer;
+}
+
+
+/* Footer */
+
+footer {
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+footer span {
+    color:#38bdf8;
+}
+
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+header{
+    flex-direction:column;
+}
+
+nav ul{
+    flex-direction:column;
+    text-align:center;
+    margin-top:15px;
+}
+
+.hero{
+    flex-direction:column;
+    text-align:center;
+}
+
+.hero-content{
+    width:100%;
+}
+
+.hero h1{
+    font-size:34px;
+}
+
+.hero-image img{
+    width:220px;
+    margin-top:30px;
+}
+
+.about-content,
+.founder{
+    flex-direction:column;
+    text-align:center;
+}
+
+}
