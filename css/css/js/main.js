@@ -1,253 +1,160 @@
-/*==================================================
-PRO-MIND
-Main JavaScript
-Version 2.0
-==================================================*/
+/* =========================
+   PRO-MIND Website JavaScript
+   ========================= */
+
+
+/* Mobile Menu Toggle */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    /*=====================================
-      Sticky Header
-    =====================================*/
+    const menuBtn = document.querySelector(".menu-btn");
+    const nav = document.querySelector("nav ul");
 
-    const header = document.querySelector(".header");
+    if(menuBtn && nav){
 
-    function stickyHeader() {
+        menuBtn.addEventListener("click", function(){
 
-        if (window.scrollY > 80) {
-
-            header.style.background = "#061324";
-            header.style.boxShadow = "0 10px 30px rgba(0,0,0,.15)";
-
-        } else {
-
-            header.style.background = "rgba(8,27,51,.95)";
-            header.style.boxShadow = "none";
-
-        }
-
-    }
-
-    window.addEventListener("scroll", stickyHeader);
-
-    stickyHeader();
-
-    /*=====================================
-      Reveal Animation
-    =====================================*/
-
-    const revealElements = document.querySelectorAll(".reveal");
-
-    const observer = new IntersectionObserver(
-
-        function (entries) {
-
-            entries.forEach(function (entry) {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("active");
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: 0.15
-        }
-
-    );
-
-    revealElements.forEach(function (el) {
-
-        observer.observe(el);
-
-    });
-
-    /*=====================================
-      Mobile Navigation
-    =====================================*/
-
-    const menuButton = document.querySelector(".mobile-toggle");
-    const menu = document.querySelector(".nav-menu");
-
-    if (menuButton && menu) {
-
-        menuButton.addEventListener("click", function () {
-
-            menu.classList.toggle("mobile-open");
-
-            menuButton.classList.toggle("open");
+            nav.classList.toggle("active");
 
         });
 
     }
 
-    /*=====================================
-      Smooth Scroll
-    =====================================*/
 
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    /* Smooth Scrolling */
 
-        anchor.addEventListener("click", function (e) {
+    const links = document.querySelectorAll("nav a");
 
-            const target = document.querySelector(this.getAttribute("href"));
+    links.forEach(link => {
 
-            if (!target) return;
+        link.addEventListener("click", function(e){
 
-            e.preventDefault();
+            const target = document.querySelector(
+                this.getAttribute("href")
+            );
 
-            window.scrollTo({
+            if(target){
 
-                top: target.offsetTop - 80,
+                e.preventDefault();
 
-                behavior: "smooth"
-
-            });
-
-        });
-
-    });
-
-    /*=====================================
-      Counter Animation
-    =====================================*/
-
-    const counters = document.querySelectorAll(".stat-box h2");
-
-    function runCounter(counter) {
-
-        const text = counter.innerText;
-
-        const number = parseInt(text.replace(/\D/g, ""));
-
-        if (isNaN(number)) return;
-
-        let current = 0;
-
-        const increment = Math.ceil(number / 80);
-
-        const timer = setInterval(function () {
-
-            current += increment;
-
-            if (current >= number) {
-
-                counter.innerText = text;
-
-                clearInterval(timer);
-
-            } else {
-
-                if (text.includes("%")) {
-
-                    counter.innerText = current + "%";
-
-                }
-
-                else if (text.includes("+")) {
-
-                    counter.innerText = current + "+";
-
-                }
-
-                else {
-
-                    counter.innerText = current;
-
-                }
+                target.scrollIntoView({
+                    behavior:"smooth"
+                });
 
             }
 
-        }, 20);
+        });
+
+    });
+
+
+
+    /* Scroll Animation */
+
+    const animatedElements =
+        document.querySelectorAll(
+            ".card, .service-box, .industry-item, .about-content, .founder"
+        );
+
+
+    function revealOnScroll(){
+
+        animatedElements.forEach(element=>{
+
+            const position =
+            element.getBoundingClientRect().top;
+
+            const screenHeight =
+            window.innerHeight;
+
+
+            if(position < screenHeight - 100){
+
+                element.classList.add("show");
+
+            }
+
+        });
 
     }
 
-    const counterObserver = new IntersectionObserver(
 
-        function (entries) {
-
-            entries.forEach(function (entry) {
-
-                if (entry.isIntersecting) {
-
-                    runCounter(entry.target);
-
-                    counterObserver.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-
-        {
-
-            threshold: 0.6
-
-        }
-
+    window.addEventListener(
+        "scroll",
+        revealOnScroll
     );
 
-    counters.forEach(function (counter) {
+    revealOnScroll();
 
-        counterObserver.observe(counter);
 
-    });
 
-    /*=====================================
-      Active Navigation Highlight
-    =====================================*/
+    /* Contact Form Validation */
 
-    const currentPage = location.pathname.split("/").pop();
+    const form =
+    document.querySelector(".contact-form");
 
-    document.querySelectorAll(".nav-menu a").forEach(function (link) {
 
-        const href = link.getAttribute("href");
+    if(form){
 
-        if (href === currentPage) {
+        form.addEventListener(
+        "submit",
+        function(e){
 
-            link.classList.add("active");
+            e.preventDefault();
 
-        }
 
-    });
+            const name =
+            document.querySelector("#name").value;
 
-    /*=====================================
-      Button Hover Effect
-    =====================================*/
+            const email =
+            document.querySelector("#email").value;
 
-    document.querySelectorAll(".btn-primary").forEach(function (button) {
+            const message =
+            document.querySelector("#message").value;
 
-        button.addEventListener("mouseenter", function () {
 
-            button.style.transform = "translateY(-3px)";
+
+            if(
+                name === "" ||
+                email === "" ||
+                message === ""
+            ){
+
+                alert(
+                "Please fill all required fields."
+                );
+
+                return;
+
+            }
+
+
+            alert(
+            "Thank you for contacting PRO-MIND. We will connect with you soon."
+            );
+
+
+            form.reset();
+
 
         });
 
-        button.addEventListener("mouseleave", function () {
+    }
 
-            button.style.transform = "translateY(0px)";
 
-        });
 
-    });
+    /* Current Year Footer */
 
-    /*=====================================
-      Footer Year
-    =====================================*/
+    const year =
+    document.querySelector("#year");
 
-    const year = new Date().getFullYear();
 
-    document.querySelectorAll(".copyright").forEach(function (item) {
+    if(year){
 
-        item.innerHTML =
-            "© " +
-            year +
-            " PRO-MIND Strategic Growth & Business Advisory. All Rights Reserved.";
+        year.innerHTML =
+        new Date().getFullYear();
 
-    });
+    }
+
 
 });
